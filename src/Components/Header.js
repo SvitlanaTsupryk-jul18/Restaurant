@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => (
+const Header = ({ value, setFilterQuery }) => (
   <header className="header">
     <h1>Dish</h1>
     <ul className="header__nav">
@@ -8,7 +8,15 @@ const Header = () => (
       <li>Menu</li>
       <li>Contact us</li>
     </ul>
-    <input />
+    <input
+      name="filter"
+      type="text"
+      value={value}
+      placeholder="What dish do you want to find?"
+      onChange={event => setFilterQuery(event)}
+      placeholder=""
+      className="filter"
+    />
     <div>John C.</div>
   </header>
 );

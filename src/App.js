@@ -27,18 +27,21 @@ class App extends React.Component {
       shownDishes: double
     });
   };
-  // setFilterQuery = event => {
-  //   this.setState({ query: event.target.value });
-  // };
 
-  // filterPosts(posts, query) {
-  //   return (
-  //     posts &&
-  //     posts.filter(
-  //       post => post.title.includes(query) || post.body.includes(query)
-  //     )
-  //   );
-  // }
+  setFilterQuery = event => {
+    this.setState({ query: event.target.value.toLowerCase() });
+    this.dishFilter();
+  };
+
+  dishFilter = () => {
+    let copy = [...this.state.shownDishes].filter(
+      dish =>
+        dish.name.includes(this.state.query) ||
+        dish.description.includes(this.state.query)
+    );
+
+    this.setState({ shownDishes: copy });
+  };
 
   // handleClick = () => {
   //   this.setState(prevState => {
@@ -56,7 +59,7 @@ class App extends React.Component {
     const { shownDishes, isShown, query, loadMore } = this.state;
     return (
       <div>
-        <Header value={query} />
+        <Header value={query} setFilterQuery={this.setFilterQuery} />
         <Menu cards={shownDishes} loadMore={this.loadMore} />
         <Modal />
       </div>
