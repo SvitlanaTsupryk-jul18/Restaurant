@@ -5,7 +5,6 @@ class Modal extends React.Component {
     name: "",
     ingredients: [],
     desription: "",
-    weigth: null,
     ingredientName: "",
     ingredientWeigth: ""
   };
@@ -35,12 +34,16 @@ class Modal extends React.Component {
       (sum, item) => sum + item.weigth,
       0
     );
-    this.setState({ ...this.state, weigth: sumWeigth });
+    let ingredientNames = this.state.ingredients.map(
+      ingredient => ingredient.name
+    );
+    console.log(ingredientNames);
 
     let newDish = {
       name: this.state.name,
       desription: this.state.desription,
-      weigth: this.state.desription
+      weigth: sumWeigth,
+      ingredients: ingredientNames
     };
     addNewDish(newDish);
     console.log(newDish);

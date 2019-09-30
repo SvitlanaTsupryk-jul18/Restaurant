@@ -51,7 +51,7 @@ class App extends React.Component {
     return (
       dishes &&
       dishes.filter(
-        dish => dish.name.includes(query) || dish.description.includes(query)
+        dish => dish.name.includes(query) || dish.ingredients.includes(query)
       )
     );
   }
