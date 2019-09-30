@@ -2,11 +2,13 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const Menu = ({ cards, loadMore, toggleModal }) => (
-  <section>
-    <h1>Meat menu</h1>
-    <button type="button" className="add-btn" onClick={toggleModal}>
-      Add a new dish +
-    </button>
+  <section className="menu container">
+    <div className="menu__top">
+      <h2 className="menu__title">Meat Dishes</h2>
+      <button type="button" className="menu__btn" onClick={toggleModal}>
+        Add a new dish +
+      </button>
+    </div>
     {cards.length ? (
       <InfiniteScroll
         dataLength={cards.length}
