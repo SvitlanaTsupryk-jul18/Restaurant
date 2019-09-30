@@ -7,7 +7,7 @@ import data from "./dishes";
 
 class App extends React.Component {
   state = {
-    isShown: true,
+    isShown: false,
     dishes: [],
     query: "",
     shownDishes: []
@@ -39,29 +39,43 @@ class App extends React.Component {
         dish.name.includes(this.state.query) ||
         dish.description.includes(this.state.query)
     );
-
+    console.log(copy);
     this.setState({ shownDishes: copy });
   };
 
-  // handleClick = () => {
-  //   this.setState(prevState => {
-  //     return {
-  //       isShown: !prevState.isShown
-  //     };
-  //   });
-  //   console.log(id);
-  // };
+  toggleModal = () => {
+    this.setState(prevState => {
+      return {
+        isShown: !prevState.isShown
+      };
+    });
+  };
+
+  addNewDish = newDish => {
+    this.setState(prevState => {
+      return {
+        dishes: [...prevState.dishes, newDish],
+        shownDishes: [...prevState.dishes, newDish]
+      };
+    });
+  };
 
   render() {
     {
       console.log(this.state);
     }
-    const { shownDishes, isShown, query, loadMore } = this.state;
+    const { shownDishes, isShown, query } = this.state;
     return (
       <div>
         <Header value={query} setFilterQuery={this.setFilterQuery} />
-        <Menu cards={shownDishes} loadMore={this.loadMore} />
-        <Modal />
+        <Menu
+          cards={shownDishes}
+          loadMore={this.loadMore}
+          toggleModal={this.toggleModal}
+        />
+        {isShown && (
+          <Modal toggleModal={this.toggleModal} addNewDish={this.addNewDish} />
+        )}
       </div>
     );
   }

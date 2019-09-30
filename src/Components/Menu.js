@@ -1,9 +1,13 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const Menu = ({ cards, loadMore }) => (
+const Menu = ({ cards, loadMore, toggleModal }) => (
   <section>
     <h1>Meat menu</h1>
+    <button type="button" className="add-btn" onClick={toggleModal}>
+      Add a new dish +
+    </button>
+
     {cards.length ? (
       <InfiniteScroll
         dataLength={cards.length}
@@ -15,7 +19,7 @@ const Menu = ({ cards, loadMore }) => (
           <div key={Date.now() * Math.random() * 10} className="card">
             <h3>{card.name} </h3>
             <p className="card__text">{card.description}</p>
-            <p className="card__weigth">{card.weight} g</p>
+            <p className="card__weigth">{card.weight} Kcl</p>
           </div>
         ))}
       </InfiniteScroll>

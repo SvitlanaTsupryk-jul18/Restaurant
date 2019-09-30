@@ -14,7 +14,6 @@ const Header = ({ value, setFilterQuery }) => (
       value={value}
       placeholder="What dish do you want to find?"
       onChange={event => setFilterQuery(event)}
-      placeholder=""
       className="filter"
     />
     <div>John C.</div>
