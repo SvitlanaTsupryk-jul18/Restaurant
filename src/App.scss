@@ -1,0 +1,63 @@
+$mainColor: #ffb53a;
+$textColor: #2e3b50;
+
+.header {
+  height: 300px;
+  background-image: url(images/image.png);
+}
+
+.dishes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  // height: 300px;
+  width: 28%;
+  color: $textColor;
+  box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  margin: 0 15px 20px 15px;
+  &__img {
+    height: 100px;
+    width: 100%;
+    background-color: $mainColor;
+  }
+  &__name {
+    font-size: 17px;
+    font-weight: bold;
+    padding: 30px;
+  }
+  &__text {
+    font-size: 14px;
+    padding: 30px;
+  }
+  &__weigth {
+    font-size: 11px;
+    text-align: right;
+    padding: 10px;
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 100px;
+  left: 15%;
+  right: 15%;
+  bottom: 100px;
+  background-color: white;
+}
+
+.modal__header {
+  background-color: #f4f4f4;
+  padding: 50px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(38, 38, 38, 0.7);
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import Header from "./Components/Header";
 import Menu from "./Components/Menu";
 import Modal from "./Components/Modal";

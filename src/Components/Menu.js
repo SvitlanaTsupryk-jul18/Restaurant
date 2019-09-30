@@ -7,19 +7,20 @@ const Menu = ({ cards, loadMore, toggleModal }) => (
     <button type="button" className="add-btn" onClick={toggleModal}>
       Add a new dish +
     </button>
-
     {cards.length ? (
       <InfiniteScroll
         dataLength={cards.length}
         next={loadMore}
         hasMore={true}
         loader={<h4>Loading...</h4>}
+        className="dishes"
       >
         {cards.map(card => (
           <div key={Date.now() * Math.random() * 10} className="card">
-            <h3>{card.name} </h3>
-            <p className="card__text">{card.description}</p>
+            <div className="card__img">Image</div>
             <p className="card__weigth">{card.weight} Kcl</p>
+            <h3 className="card__name">{card.name} </h3>
+            <p className="card__text">{card.description}</p>
           </div>
         ))}
       </InfiniteScroll>
