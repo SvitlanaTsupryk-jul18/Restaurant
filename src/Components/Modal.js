@@ -88,7 +88,7 @@ class Modal extends React.Component {
                   className="ingred__btn"
                   onClick={this.addIngredient}
                 >
-                  Add a new ingredient +
+                  Add this ingredient +
                 </button>
 
                 <input

@@ -7,46 +7,33 @@ import data from "./dishes";
 
 class App extends React.Component {
   state = {
-    isShown: false,
+    isModalOpen: false,
     dishes: [],
-    query: "",
-    shownDishes: []
+    query: ""
   };
 
   componentDidMount() {
     this.setState({
-      dishes: data,
-      shownDishes: data
+      dishes: data
     });
   }
 
   loadMore = () => {
-    let double = [...this.state.shownDishes].concat([...this.state.dishes]);
+    let double = [...this.state.dishes, ...this.state.dishes];
     console.log(double);
     this.setState({
-      shownDishes: double
+      dishes: double
     });
   };
 
   setFilterQuery = event => {
     this.setState({ query: event.target.value.toLowerCase() });
-    this.dishFilter();
-  };
-
-  dishFilter = () => {
-    let copy = [...this.state.shownDishes].filter(
-      dish =>
-        dish.name.includes(this.state.query) ||
-        dish.description.includes(this.state.query)
-    );
-    console.log(copy);
-    this.setState({ shownDishes: copy });
   };
 
   toggleModal = () => {
     this.setState(prevState => {
       return {
-        isShown: !prevState.isShown
+        isModalOpen: !prevState.isModalOpen
       };
     });
   };
@@ -54,26 +41,37 @@ class App extends React.Component {
   addNewDish = newDish => {
     this.setState(prevState => {
       return {
-        dishes: [...prevState.dishes, newDish],
-        shownDishes: [...prevState.dishes, newDish]
+        dishes: [...prevState.dishes, newDish]
       };
     });
   };
+
+  filterDishes() {
+    const { dishes, query } = this.state;
+    return (
+      dishes &&
+      dishes.filter(
+        dish => dish.name.includes(query) || dish.description.includes(query)
+      )
+    );
+  }
 
   render() {
     {
       console.log(this.state);
     }
-    const { shownDishes, isShown, query } = this.state;
+    const { isModalOpen, query } = this.state;
+    const visibleDishes = this.filterDishes();
+
     return (
       <div>
         <Header value={query} setFilterQuery={this.setFilterQuery} />
         <Menu
-          cards={shownDishes}
+          cards={visibleDishes}
           loadMore={this.loadMore}
           toggleModal={this.toggleModal}
         />
-        {isShown && (
+        {isModalOpen && (
           <Modal toggleModal={this.toggleModal} addNewDish={this.addNewDish} />
         )}
       </div>
